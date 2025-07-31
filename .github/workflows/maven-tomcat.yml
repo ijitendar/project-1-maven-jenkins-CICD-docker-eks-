@@ -1,4 +1,4 @@
-name: Maven Build and Deploy to Tomcat
+Name: Maven Build and Deploy to Tomcat
 
 on:
   push:

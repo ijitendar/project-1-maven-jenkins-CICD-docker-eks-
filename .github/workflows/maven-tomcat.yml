@@ -29,8 +29,8 @@ jobs:
         env:
           TOMCAT_USER: admin
           TOMCAT_PASS: admin
-          TOMCAT_HOST: 18.206.223.14
-          TOMCAT_PORT: 8081
+          TOMCAT_HOST: 98.81.234.162
+          TOMCAT_PORT: 808O
           WAR_NAME: webapp
         run: |
           WAR_PATH=$(find webapp/target -name "*.war" | head -n 1)

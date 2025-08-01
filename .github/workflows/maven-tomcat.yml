@@ -29,18 +29,23 @@ jobs:
         env:
           TOMCAT_USER: admin
           TOMCAT_PASS: admin
-          TOMCAT_HOST: 98.81.234.162
-          TOMCAT_PORT: 808O
-          WAR_NAME: webapp
+          TOMCAT_HOST: 98.81.234.162  # Your Tomcat IP
+          TOMCAT_PORT: 8080            # Correct port
+          WAR_NAME: webapp             # WAR file name (without the .war extension)
         run: |
+          # Find the WAR file
           WAR_PATH=$(find webapp/target -name "*.war" | head -n 1)
+          
+          # Check if the WAR file exists
           if [[ ! -f "$WAR_PATH" ]]; then
             echo "WAR file not found at expected location: $WAR_PATH"
             exit 1
           fi
 
+          # Output the WAR file path for debugging
           echo "Deploying WAR: $WAR_PATH"
 
+          # Deploy WAR file to Tomcat
           curl -v --upload-file "$WAR_PATH" \
             --user "$TOMCAT_USER:$TOMCAT_PASS" \
             "http://$TOMCAT_HOST:$TOMCAT_PORT/manager/text/deploy?path=/$WAR_NAME&update=true"
